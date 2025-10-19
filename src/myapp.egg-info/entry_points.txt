@@ -1,0 +1,2 @@
+[console_scripts]
+eqtex = eqtex.main:app
