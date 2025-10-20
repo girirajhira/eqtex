@@ -3,7 +3,7 @@ requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "myapp"
+name = "eqtex"
 version = "0.1.0"
 description = "A tool to convert latex equations into images through the commandline."
 authors = [{ name = "T.G. Hiranandani", email = "you@example.com" }]
