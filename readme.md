@@ -20,13 +20,13 @@ pip install eqtex
 
 ```bash
 # Generate an image from a LaTeX expression
-eqtex "E = mc^2" -o equation.png
+eqtex convert "\chi = V - E + F" -o equation.png
 
 # Generate with custom resolution
-eqtex "\frac{a}{b} = \sqrt{c}" -o fraction.png --dpi 300
+eqtex convert "a^2 + b^2 = c^2" -o fraction.png --dpi 300
 
-# Inline math mode
-eqtex "$\int_0^\infty e^{-x^2} dx$" -o integral.png
+# Display math mode
+eqtex convert "\[ \int \frac{f(z)}{z-z_0} dz = 2\pi i f(z_0)  \]" -o integral.png
 ```
 
 ## Dependencies
@@ -49,9 +49,10 @@ brew install --cask mactex
 brew install imagemagick
 ```
 
+<!-- 
 **On Windows:**
 - Install [MiKTeX](https://miktex.org/)
-- Install [ImageMagick](https://imagemagick.org/script/download.php)
+- Install [ImageMagick](https://imagemagick.org/script/download.php) -->
 
 ## Requirements
 
