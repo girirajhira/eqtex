@@ -10,10 +10,10 @@ A command-line tool to generate images from LaTeX expressions. Perfect for creat
 
 ## Installation
 
-Install eqtex using pip:
+Clone the package and install eqtex using pip:
 
 ```bash
-pip install eqtex
+pip install .
 ```
 
 ## Example Usage
