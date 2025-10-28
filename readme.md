@@ -23,11 +23,14 @@ pip install .
 eqtex convert "\chi = V - E + F" -o equation.png
 
 # Generate with custom resolution
-eqtex convert "a^2 + b^2 = c^2" -o fraction.png --dpi 300
+eqtex convert "a^2 + b^2 = c^2" -o pythagoras.png --dpi 300
 
 # Display math mode
-eqtex convert "\[ \int \frac{f(z)}{z-z_0} dz = 2\pi i f(z_0)  \]" -o integral.png
+eqtex convert "\[ \int \frac{f(z)}{z-z_0} dz = 2\pi i f(z_0)  \]" -o cauchy.png
 ```
+
+<!-- ## Options  -->
+
 
 ## Dependencies
 

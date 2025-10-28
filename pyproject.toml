@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "eqtex"
-version = "0.1.0"
+version = "0.1.1"
 description = "A tool to convert latex equations into images through the commandline."
 authors = [{ name = "T.G. Hiranandani", email = "you@example.com" }]
 dependencies = [
@@ -14,3 +14,15 @@ dependencies = [
 
 [project.scripts]
 eqtex = "eqtex.main:app"
+
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["eqtex*"]
+
+[tool.setuptools.package-data]
+eqtex = [
+    "defaults/*.tex",
+    "defaults/*.txt",
+    # Add other patterns as needed
+]
