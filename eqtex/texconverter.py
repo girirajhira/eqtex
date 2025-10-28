@@ -1,11 +1,20 @@
 import os
 import subprocess
 import shutil
+from pathlib import Path 
 
-# Import the defaul template
-with open('eqtex/defaults/default_preamble.tex') as file:
+SCRIPT_DIR = Path(__file__).parent.resolve()
+
+defaults_path = SCRIPT_DIR / 'defaults'/ 'default_preamble.tex'
+# Import the default template
+with open(defaults_path) as file:
     default_latex_template =  file.read()
+    
 
+
+# # Import the default template
+# with importlib.resources.files("eqtex").joinpath("defaults/default_preamble.tex").open("r") as file:
+#     default_latex_template =  file.read()
 
 def generate_pdf_from_tex(expression, outfile, tempfolder = True, usepackages=None,
              preamble=None, colour = None, cur_dir=None):
@@ -53,12 +62,17 @@ def dvi_to_svg(infile, outfile):
     os.system(command)
 
 
-def create_image_from_tex(expression: str, filename: str, dpi = 300, border = 10, quality = 100):
+def create_image_from_tex(expression: str, filename: str, dpi = 300,
+               border = 10, quality = 100, trim = True):
     os.mkdir('tempfolder')
     generate_pdf_from_tex(expression, 'tempfolder/outfile.tex')
+    if trim:
+        trimoption = '-trim'
+    else:
+        trimoption = ''
     
     if filename.endswith('.png'):
-        os.system(f'magick   -density {dpi} tempfolder/outfile.pdf -trim +repage -bordercolor none -border {border} -quality {quality} {filename}')
+        os.system(f'magick   -density {dpi} tempfolder/outfile.pdf {trimoption} +repage -bordercolor none -border {border} -quality {quality} {filename}')
     elif filename.endswith('.svg'):
         dvi_to_svg('tempfolder/outfile.pdf', filename)
     elif filename.endswith('.pdf'):

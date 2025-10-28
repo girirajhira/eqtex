@@ -23,7 +23,7 @@ def convert(
         help="Output filename for the generated image"
     ),
     dpi: int = typer.Option(
-        300,
+        600,
         "--dpi", "-d",
         help="Resolution in DPI (dots per inch)"
     ),
@@ -31,7 +31,22 @@ def convert(
         False,
         "--verbose", "-v",
         help="Show detailed output"
-    )
+    ),
+    quality: int = typer.Option(
+        100,
+        "--quality", "-q",
+        help="Quality of the image (jpeg)"
+    ),
+    border: int = typer.Option(
+        10,
+        "--border", "-b",
+        help="Pixel width of the border"
+    ),
+    trim: bool = typer.Option(
+        True,
+        "--trim", "-t",
+        help="Trim the image"
+    ),
 ):
     """
     Convert a LaTeX expression to an image.
@@ -56,7 +71,9 @@ def convert(
             if not verbose:
                 progress.add_task(description="Generating image...", total=None)
             
-            create_image_from_tex(expr, output, dpi=dpi)
+            create_image_from_tex(expr, output, dpi=dpi,
+                         border=border, quality=quality,
+                         trim = trim)
         
         console.print(f"[green]✓[/green] Successfully created: [bold]{output}[/bold]")
         
