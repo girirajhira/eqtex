@@ -64,6 +64,10 @@ def dvi_to_svg(infile, outfile):
 
 def create_image_from_tex(expression: str, filename: str, dpi = 300,
                border = 10, quality = 100, trim = True):
+    ''''
+    Handles LateX document creation and conversion to desired format using imagemagick
+    ''''
+    
     os.mkdir('tempfolder')
     generate_pdf_from_tex(expression, 'tempfolder/outfile.tex')
     if trim:
@@ -73,16 +77,15 @@ def create_image_from_tex(expression: str, filename: str, dpi = 300,
     
     if filename.endswith('.png'):
         os.system(f'magick   -density {dpi} tempfolder/outfile.pdf {trimoption} +repage -bordercolor none -border {border} -quality {quality} {filename}')
+    elif filename.endswith('.jpeg') or filename.endswith('.jpg'):
+        os.system(f'magick   -density {dpi} tempfolder/outfile.pdf {trimoption} +repage -bordercolor none -border {border} -quality {quality} -background white -flatten {filename}')
     elif filename.endswith('.svg'):
         dvi_to_svg('tempfolder/outfile.pdf', filename)
     elif filename.endswith('.pdf'):
         os.system(f'mv tempfolder/outfile.pdf {filename}')
+    else:
+        os.system(f'magick   -density {dpi} tempfolder/outfile.pdf {trimoption} +repage -bordercolor none -border {border} -quality {quality} -background white -flatten {filename}')
     shutil.rmtree('tempfolder')
-    # elif filename == '':
-    #     filename = (expression.replace(" ", "")).replace(r"\", "")
-    # pass
-
-
 
 
 

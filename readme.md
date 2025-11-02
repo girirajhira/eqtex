@@ -26,7 +26,7 @@ eqtex convert "\chi = V - E + F" -o equation.png
 eqtex convert "a^2 + b^2 = c^2" -o pythagoras.png --dpi 300
 
 # Display math mode
-eqtex convert "\[ \int \frac{f(z)}{z-z_0} dz = 2\pi i f(z_0)  \]" -o cauchy.png
+eqtex convert "\[ \oint \frac{f(z)}{z-z_0} dz = 2\pi i f(z_0)  \]" -o cauchy.png
 ```
 
 <!-- ## Options  -->
@@ -38,18 +38,20 @@ This project requires the following to be installed locally:
 
 - **pdflatex** - Part of a TeX distribution (e.g., TeX Live, MiKTeX)
 - **ImageMagick** - For image conversion and processing
+- **pdf2svg** - For SVG Conversion
 
 ### Installing Dependencies
 
 **On Ubuntu/Debian:**
 ```bash
-sudo apt-get install texlive imagemagick
+sudo apt-get install texlive imagemagick pdf2svg
 ```
 
 **On macOS (with Homebrew):**
 ```bash
 brew install --cask mactex
 brew install imagemagick
+brew install pdf2svg
 ```
 
 <!-- 
